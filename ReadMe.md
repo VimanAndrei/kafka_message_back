@@ -1,6 +1,8 @@
 # For Kafka comands:
 
-## Open cmd in location you extract kafka apache
+### You can download Kafka froma ```https://kafka.apache.org/downloads```
+
+## Open cmd in location you extract kafka apache.
 
 ### Start Zookeeper Server: 
 ``` 
