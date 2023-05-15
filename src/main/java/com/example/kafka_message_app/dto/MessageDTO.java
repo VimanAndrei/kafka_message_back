@@ -15,11 +15,13 @@ import java.time.LocalDateTime;
 public class MessageDTO {
     private String messageFrom;
     private String messageContent;
+    private String messageTo;
 
     public Message toMessage() {
         Message message = new Message();
         message.setMessageContent(this.messageContent);
         message.setMessageFrom(this.messageFrom);
+        message.setMessageTo(this.messageTo);
         message.setMessageTimestamp(LocalDateTime.now().toString());
         return message;
     }
