@@ -2,6 +2,7 @@ package com.example.kafka_message_app.controllers;
 
 import com.example.kafka_message_app.constants.KafkaAppConstants;
 import com.example.kafka_message_app.dto.MessageDTO;
+import com.example.kafka_message_app.dto.PersonDTO;
 import com.example.kafka_message_app.models.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -9,10 +10,12 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,4 +49,14 @@ public class PersonService {
     }
 
 
+    public List<Person> findAllUserExceptOne(String username) {
+        List<Person> personDTOS = personRepo.findAll();
+        List<Person> newPersons = new ArrayList<>();
+        for (int i = 0; i < personDTOS.size(); i++) {
+            if (! personDTOS.get(i).getName().equals(username)){
+                newPersons.add(personDTOS.get(i));
+            }
+        }
+        return newPersons;
+    }
 }
