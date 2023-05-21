@@ -27,6 +27,7 @@ public class LoginIndex {
         return new ResponseEntity<List<Person>>(list, HttpStatus.OK);
     }
 
+
     @PostMapping()
     public ResponseEntity<?> loginProsumer(@RequestBody PersonDTO loginDTO) {
         String loginPerson = personService.loginPerson(loginDTO);

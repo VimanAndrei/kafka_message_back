@@ -41,7 +41,7 @@ public class ListenerConfiguration {
         configurations.put(ConsumerConfig.GROUP_ID_CONFIG, KafkaAppConstants.GROUP_ID);
         configurations.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configurations.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        configurations.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        configurations.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         return configurations;
     }
 }
