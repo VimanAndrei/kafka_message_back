@@ -32,18 +32,29 @@ public class MessageServce {
     }
 
     public List<Message> findAllMesage(MessageDTO messageDTO){
+        boolean isGroup = Boolean.parseBoolean(messageDTO.getMessageContent());
+        System.out.println(isGroup);
         List<Message> messages = messageRepo.findAll();
         List<Message> newMessageList = new ArrayList<>();
-        for (int i = 0; i < messages.size(); i++) {
-            if(messages.get(i).getMessageFrom().equals(messageDTO.getMessageFrom()) &&
-                    messages.get(i).getMessageTo().equals(messageDTO.getMessageTo())){
-                newMessageList.add(messages.get(i));
-
-            }else {
-                if(messages.get(i).getMessageFrom().equals(messageDTO.getMessageTo()) &&
-                        messages.get(i).getMessageTo().equals(messageDTO.getMessageFrom())){
+        if(!isGroup) {
+            for (int i = 0; i < messages.size(); i++) {
+                if (messages.get(i).getMessageFrom().equals(messageDTO.getMessageFrom()) &&
+                        messages.get(i).getMessageTo().equals(messageDTO.getMessageTo())) {
                     newMessageList.add(messages.get(i));
 
+                } else {
+                    if (messages.get(i).getMessageFrom().equals(messageDTO.getMessageTo()) &&
+                            messages.get(i).getMessageTo().equals(messageDTO.getMessageFrom())) {
+                        newMessageList.add(messages.get(i));
+
+                    }
+                }
+            }
+        }
+        else{
+            for (int i = 0; i < messages.size(); i++) {
+                if (messages.get(i).getMessageTo().equals(messageDTO.getMessageTo())) {
+                    newMessageList.add(messages.get(i));
                 }
             }
         }

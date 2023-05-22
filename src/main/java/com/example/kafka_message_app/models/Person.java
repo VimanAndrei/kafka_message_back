@@ -15,4 +15,5 @@ public class Person {
     private String id;
     private String name;
     private String password;
+    private boolean isGroup;
 }

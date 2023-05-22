@@ -29,6 +29,9 @@ public class PersonService {
 
     public String insertPerson(PersonDTO personDTO) {
         Person person = personDTO.toPerson();
+        if(personDTO.getPassword().isEmpty()){
+            person.setGroup(true);
+        }
         Optional<Person> optionalPerson = personRepo.findByName(person.getName());
         if(optionalPerson.isPresent()){
             person.setId(optionalPerson.get().getId());
@@ -41,11 +44,16 @@ public class PersonService {
     }
 
     public String loginPerson(PersonDTO personDTO) {
-        Optional<Person> p = personRepo.findByNameAndPassword(personDTO.getName(),personDTO.getPassword());
-        if (!p.isPresent()) {
+        if (!personDTO.isGroup()) {
+            Optional<Person> p = personRepo.findByNameAndPassword(personDTO.getName(), personDTO.getPassword());
+            if (!p.isPresent()) {
+                return jwtUtil.errorAccesTokenGenerator("NOTFOUND");
+            }
+            return jwtUtil.accesTokenGenerator(p.get());
+        }
+        else {
             return jwtUtil.errorAccesTokenGenerator("NOTFOUND");
         }
-        return jwtUtil.accesTokenGenerator(p.get());
     }
 
 
